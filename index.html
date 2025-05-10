@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เรียบร้อยโดนกูดัก</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet"> <!-- ฟอนต์ที่กำหนดเอง -->
+  <style>
+    /* การตั้งค่าพื้นหลัง */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url('https://i.imgflip.com/9ci3d7.jpg'); /* ใส่ภาพพื้นหลัง */
+      background-size: cover;
+      background-position: center;
+      font-family: 'Kanit', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden; /* ป้องกันไม่ให้มีสกรอลล์ */
+      flex-direction: column;
+      cursor: pointer; /* เปลี่ยนเมาส์เป็น pointer */
+    }
+
+    .content {
+      position: relative;
+      text-align: center;
+      color: rgb(255, 255, 255);
+      font-size: 4rem;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+      pointer-events: none; /* ป้องกันไม่ให้มีการโต้ตอบ */
+    }
+
+    /* สไตล์ของข้อความ */
+    h1 {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: moveUpDown 4s ease-in-out infinite; /* เพิ่ม Animation */
+    }
+
+    /* กำหนดการเคลื่อนไหวแบบขึ้น-ลง */
+    @keyframes moveUpDown {
+      0% {
+        transform: translate(-50%, -50%);
+      }
+      50% {
+        transform: translate(-50%, -60%);
+      }
+      100% {
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    /* สไตล์แสดง IP */
+    .ip-address {
+      color: #fff;
+      font-size: 1.5rem;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    /* สไตล์ข้อความที่มุมขวาล่าง */
+    .bottom-right {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 1rem;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 5px;
+      pointer-events: none; /* ป้องกันไม่ให้บังการคลิก */
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>เรียบร้อยโดนกูดัก</h1>
+    <!-- แสดง IP address -->
+    <div class="ip-address" id="ipAddress">กำลังโหลด IP...</div>
+  </div>
+
+  <!-- ข้อความเล็กที่มุมขวาล่าง -->
+  <div class="bottom-right">แตะหน้าจอเพื่อไปต่อ</div>
+
+  <script>
+    // ใช้ API ของ ipify เพื่อตรวจสอบ IP
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        // แสดง IP ใน HTML
+        document.getElementById('ipAddress').textContent = 'IP ของมึงคือ: ' + data.ip;
+      })
+      .catch(error => {
+        document.getElementById('ipAddress').textContent = 'ไม่สามารถดึง IP ได้';
+        console.error(error);
+      });
+
+    // เมื่อคลิกที่หน้าจอ ให้ไปยังเว็บไซต์อื่น
+    document.body.addEventListener('click', function() {
+      window.location.href = 'https://theannoyingsite.com/'; // เปลี่ยนลิงก์ตรงนี้เป็นเว็บที่คุณต้องการ
+    });
+  </script>
+</body>
+</html>
